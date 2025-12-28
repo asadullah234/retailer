@@ -1,0 +1,50 @@
+MONGODB ATLAS SETUP INSTRUCTIONS
+=====================================
+
+Your backend server is trying to connect to MongoDB Atlas but can't find the connection string.
+Follow these steps to fix it:
+
+1. CREATE .env FILE
+==================
+Create a new file named ".env" in the "backend" folder with this content:
+
+MONGODB_URI=mongodb+srv://your-username:your-password@cluster0.xxxxx.mongodb.net/retailer-system
+JWT_SECRET=retailerpro-secret-jwt-key-2024-very-secure-random-string
+JWT_EXPIRE=7d
+PORT=5000
+FRONTEND_URL=http://localhost:3000
+
+2. GET YOUR ATLAS CONNECTION STRING
+==================================
+1. Go to https://cloud.mongodb.com/
+2. Click on your cluster
+3. Click "Connect"
+4. Choose "Connect your application"
+5. Copy the connection string
+6. It should look like:
+   mongodb+srv://username:password@cluster0.xxxxx.mongodb.net/database
+
+7. Replace <password> with your actual password
+8. Replace the database name if different (use "retailer-system")
+
+3. UPDATE THE .env FILE
+======================
+Replace this line in your .env file:
+MONGODB_URI=mongodb+srv://your-username:your-password@cluster0.xxxxx.mongodb.net/retailer-system
+
+With your actual Atlas connection string.
+
+4. RESTART BACKEND SERVER
+========================
+The server should automatically detect the .env file and connect to Atlas.
+
+5. VERIFY CONNECTION
+==================
+Look for this message in the terminal:
+✅ MongoDB Connected: cluster0.xxxxx.mongodb.net
+
+If you still get errors, make sure:
+- Your IP address is whitelisted in Atlas (0.0.0.0/0 for testing)
+- Your database user has read/write permissions
+- The connection string is exactly as provided by Atlas
+
